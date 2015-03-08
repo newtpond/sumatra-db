@@ -1,2 +1,2 @@
-/images/*
-!/images
+/images/**
+/api/config/config.php
