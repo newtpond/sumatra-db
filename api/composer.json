@@ -1,0 +1,27 @@
+{
+    "name": "panique/sumatra-api",
+    "type": "project",
+    "description": "A read only db api - designed for the sumatra project",
+    "keywords": ["slim-api","mvc","db"],
+    "homepage": "https://github.com/mturjak/sumatra-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Turjak",
+            "homepage": "https://github.com/mturjak",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/mturjak/sumatra-api/issues",
+        "source": "https://github.com/mturjak/sumatra-api"
+    },
+    "require":{
+        "php": ">=5.3.7",
+        "raveren/kint": "~1.0@dev",
+        "slim/slim": "2.5.0"
+    },
+    "autoload": {
+        "psr-4": { "": ["libs/", "controllers/", "models/"] }
+    }
+}
