@@ -1,2 +1,4 @@
 /images/**
 /api/config/config.php
+/api/vendor
+/api/composer.lock
