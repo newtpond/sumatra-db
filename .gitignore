@@ -2,3 +2,4 @@
 /api/config/config.php
 /api/vendor
 /api/composer.lock
+/public/img

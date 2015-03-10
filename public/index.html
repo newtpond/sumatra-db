@@ -1,16 +1,16 @@
 <html style="width: 100%; height: 100%; margin: 0;">
 <head>
-  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="css/leaflet.css" />
 </head>
 <body style="width: 100%; height: 100%; margin: 0;">
   <div id="map" style="width: 100%; height: 100%;"></div>
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="js/leaflet.js"></script>
   <script>
 
-  var tiles = L.tileLayer('img/taxa/Centotheca_lappacea/.tiles/IMG_6671_JPG/{z}/{x}/{y}.jpg', {
+  var tiles = L.tileLayer('img/taxa/Centotheca_lappacea/.tiles/IMG_6010_JPG/{z}/{x}/{y}.jpg', {
     minZoom: 1,
     maxZoom: 5,
-    tms: false,
+    tms: true,
     // this map option disables world wrapping. by default, it is false.
     continuousWorld: true
     // this option disables loading tiles outside of the world bounds.

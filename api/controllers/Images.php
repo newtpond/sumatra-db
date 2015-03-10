@@ -72,7 +72,6 @@ class Images extends Controller
 
         $this->render('classes/index', array(
             'message' => "Updated preview images and tiles.",
-            'count' => count($result),
             'changes' => $result
         ));
     }

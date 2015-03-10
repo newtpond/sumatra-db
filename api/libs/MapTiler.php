@@ -46,7 +46,7 @@ class MapTiler
 	 * if true - tiles will generate from top to bottom
 	 * @var bool
 	 */
-	protected $tms = false;
+	protected $tms = true;
 
 	/**
 	 * fill color can be transparent for png
@@ -319,7 +319,7 @@ class MapTiler
 				//$image->setImagePage($w, $h, $crop_x, $crop_y);
 				$tile->cropImage($w, $h, $crop_x, $crop_y);
 
-				//check if image smaller than we need
+				//check if image smaller than we need - this should now be redundant as we did it on the whole image
 				if($tile->getImageWidth() < $w || $tile->getimageheight() < $h){
 					$this->fillFreeSpace($tile, $w, $h, true);
 				}
@@ -370,6 +370,14 @@ class MapTiler
 
 		//scale - work fast, but without any quality configuration
 		$image->scaleImage($w, $h, true);
+
+		//we use this here insted of on tiles so that we get even bottom and top margin
+		$image->setImageBackgroundColor(new ImagickPixel('#242221'));
+		$image->extentImage(
+				$w, $h,
+				($image->getImageWidth() - $w)/2,
+				($image->getImageHeight() - $h)/2
+		);
 
 		return $image;
 	}
