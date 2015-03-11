@@ -1,6 +1,12 @@
 <?php
 
 class ImagesModel {
+
+    /**
+     * Ignore in scanned dir
+     */
+    protected $dir_ignore = array('.', '..', '.tiles');
+
     /**
      * List orig. images in spcies folder
      */
@@ -10,7 +16,7 @@ class ImagesModel {
 
         if(file_exists($orig)) {
             $sp = str_replace(' ', '_', $sp);
-            $orig_list = array_slice(scandir($orig, SCANDIR_SORT_NONE), 2);
+            $orig_list = array_slice(scandir($orig), 2);
             return $orig_list;
         }
         return array();
@@ -44,20 +50,20 @@ class ImagesModel {
      * Refresh images after adding/removing original images
      */
     public function refreshImgs() {
-        $sp_list = array_slice(scandir(IMG_ORIG, SCANDIR_SORT_NONE), 2);
-        $pub_sp_list = array_slice(scandir(IMG_PATH, SCANDIR_SORT_NONE), 2);
-        $res = false;
+        $sp_list = array_slice(scandir(IMG_ORIG), 2);
+        $pub_sp_list = array_slice(scandir(IMG_PATH), 2);
+        $res = array();
 
         if(!empty($sp_list)) {
 
             foreach ($sp_list as $sp) {
-                $orig_list = array_slice(scandir(IMG_ORIG . $sp, SCANDIR_SORT_NONE), 2);
+                $orig_list = array_slice(scandir(IMG_ORIG . $sp), 2);
 
                 $sp_path = IMG_PATH . ucfirst(str_replace(' ', '_', $sp)) . '/';
                 if(!file_exists($sp_path)) {
                     mkdir($sp_path);
                 }
-                $public_list = array_slice(scandir($sp_path, SCANDIR_SORT_NONE), 2);
+                $public_list = array_diff(scandir($sp_path), $this->dir_ignore);
 
                 $changed_list = array_merge(
                     array_diff($orig_list, $public_list), 
@@ -65,6 +71,7 @@ class ImagesModel {
                 );
 
                 if(count($changed_list) > 0) {
+                    $res[] = $sp;
                     // Create preview images
                     foreach($changed_list as $img) {
                         $arg1 = escapeshellarg($sp);
@@ -72,18 +79,15 @@ class ImagesModel {
                         
                         // Run in background
                         new ImgRefresh($sp, $img);
-                        
                         //exec("php libs/ImgRefresh.php $arg1 $arg2 > /dev/null &");
-                        return "success";
                     }
                 }
             }
-            $res = true;
         }
         foreach($pub_sp_list as $sp) {
             if(!file_exists(IMG_ORIG . '/' . str_replace('_', ' ', $sp))) {
+                $res[] = $sp;
                 $this->removePublic($sp);
-                $res = true;
             }
         }
         return $res;

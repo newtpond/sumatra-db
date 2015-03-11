@@ -24,7 +24,7 @@ class ImgRefresh
 
 	public function __construct($sp, $img) {
 		$this->img = $img;
-		$this->src_path = IMG_ORIG . '/' . $sp . '/';
+		$this->src_path = IMG_ORIG . $sp . '/';
 
 		$sp = str_replace(' ', '_', $sp);
 		$this->pub_path = IMG_PATH . ucfirst($sp) . '/';
@@ -75,11 +75,11 @@ class ImgRefresh
         echo $this->tiles_path . "\n";
         // Overwrite img tiles folder if incomplete (if includes some of the zoom level images)
         if(file_exists($this->tiles_path)) {
-        	$res = glob($this->tiles_path . 'images/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+        	$res = glob($this->tiles_path . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
         	if(!empty($res)) {
         		$this->removeImage();
         		mkdir($this->tiles_path);
-        	} else {
+        	} elseif(count(scandir($this->tiles_path)) > 2) {
         		return false;
         	}
         } else {
@@ -90,21 +90,25 @@ class ImgRefresh
 
 	private function removeImage() {
         // Remove preview image
-        unlink($this->pub_path . $this->img);
+        if(file_exists($this->pub_path . $this->img))
+        	unlink($this->pub_path . $this->img);
 
         // Remove tiles
         $dir = $this->tiles_path;
-        $it = new RecursiveDirectoryIterator($dir,
-                        RecursiveDirectoryIterator::SKIP_DOTS);
-        $tiles = new RecursiveIteratorIterator($it,
-                        RecursiveIteratorIterator::CHILD_FIRST);
-        foreach($tiles as $file) {
-            if ($file->isDir()){
-                rmdir($file->getRealPath());
-            } else {
-                unlink($file->getRealPath());
-            }
-        }
+        if(count(scandir($dir)) > 2) {
+	        $it = new RecursiveDirectoryIterator($dir,
+	                        RecursiveDirectoryIterator::SKIP_DOTS);
+	        $tiles = new RecursiveIteratorIterator($it,
+	                        RecursiveIteratorIterator::CHILD_FIRST);
+	        foreach($tiles as $file) {
+	            if ($file->isDir()){
+	                rmdir($file->getRealPath());
+	            } else {
+	                unlink($file->getRealPath());
+	            }
+	        }
+    	}
+    	rmdir($dir);
     }
 
 	/**
