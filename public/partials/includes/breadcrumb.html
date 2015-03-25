@@ -1,0 +1,11 @@
+<ol class="breadcrumb">
+  <li ng-class="{active : !(spList || spSingle)}">
+  	<a href="{{baseUrl}}taxa">Families</a>
+  </li>
+	<li ng-show="spList || spSingle" ng-class="{active : spList}">
+		<a href="{{baseUrl}}taxa/{{family}}">{{family.firstToUpper()}}</a>
+	</li>
+	<li ng-show="spSingle" class="active">
+		<em>{{sp.firstToUpper()}}</em>
+	</li>
+</ol>

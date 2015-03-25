@@ -1,0 +1,54 @@
+/**
+ * image map viewer (using: leaflet.css)
+ */
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#img-map {
+	width: 100%;
+	height: 100%;
+	background: #242221;
+}
+
+/* leaflet overrides */
+.leaflet-top .leaflet-control {
+	margin-top: 84px; 
+}
+.leaflet-left .leaflet-control {
+	margin-left: 18px;
+}
+
+/* top bar with back navigation */
+#img-viewer-top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #000;
+	background-color: rgba(0, 0, 0, 0.65);
+	opacity: 0.75;
+}
+#img-viewer-top:hover {
+	opacity: 1;
+}
+a.goback {
+	display: inline-block;
+	padding: 20px;
+	color: #fff;
+	background: #862f2f;
+	text-decoration: none;
+}
+a.goback:hover {
+	color: #000;
+	background: #fff;
+}
+a.goback:hover .black {
+	color: #a24545;
+}
+.fa-arrow-left {
+	margin-right: 20px;
+}

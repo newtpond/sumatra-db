@@ -40,6 +40,10 @@ $app->group('/taxa', function() use ($app)
     {
         if ($name === 'index') {
             $app->redirect(URL . 'taxa' . '/');
+        } elseif ($name === 'abc') {
+            // break up the families list by letter
+            $app->abc_list = true;
+            $this->loadController('taxa', 'index');
         }
         $this->loadController('taxa', 'spList', $name);
     });
@@ -47,12 +51,16 @@ $app->group('/taxa', function() use ($app)
     /**
      * Single species
      */
-    $app->get('/:name/:id(/$|/index(/|$)|$)', function($name, $sp) use ($app)
+    $app->get('/:name/:sd(/$|/index(/|$)|$)', function($name, $sp) use ($app)
     {
         if ($name === 'index' || $sp === 'index') {
             $app->redirect(URL . 'taxa/');
         } elseif ($sp === 'index') {
             $app->redirect(URL . 'taxa/' . $name . '/');
+        } elseif ($sp === 'abc') {
+            // break up the species list by letter
+            $app->abc_list = true;
+            $this->loadController('taxa', 'spList', $name);
         }
         $this->loadController('taxa', 'spView', $name, $sp);
     });

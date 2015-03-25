@@ -12,12 +12,14 @@ class ImagesModel {
      */
     public function listImgs($sp = '') {
         $sp = trim($sp);
-        $orig = IMG_ORIG . '/' . $sp . '/';
 
-        if(file_exists($orig)) {
-            $sp = str_replace(' ', '_', $sp);
-            $orig_list = array_slice(scandir($orig), 2);
-            return $orig_list;
+        if($sp === '') {
+            return array_slice(scandir(IMG_PATH), 2);
+        } else {
+            $sp_path = IMG_PATH . ucfirst(str_replace(' ', '_', $sp)) . '/';
+            if(file_exists($sp_path)) {
+                return array_values(array_diff(scandir($sp_path), $this->dir_ignore));
+            }
         }
         return array();
     }

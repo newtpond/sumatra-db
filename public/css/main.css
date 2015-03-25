@@ -1,12 +1,411 @@
-html, body {
+html {
 	width: 100%;
 	height: 100%;
-	margin: 0;
-	padding: 0;
+}
+body {
+  background: #dfdfdf;
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 134px;
+  font-family: Arial, sans-serif;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  min-height: 100%;
 }
 
-/* image map viewer (using: leaflet.css) */
-#img-map {
-	width: 100%;
-	height: 100%;
+/* fixing problem with emty hrefs - according to ui-bootstrap */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+a,
+.primary-light {
+  color: #a24545;
+}
+a:hover,
+.primary-dark {
+  color: #693131;
+}
+
+/* top nav bar */
+.navbar-inverse {
+  background-color: #862f2f;
+  border: none;
+}
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+  color: #fff;
+}
+.navbar-brand {
+  display: block;
+  position: relative;
+  left: 14px;
+  padding-left: 47px;
+}
+.navbar-brand img {
+  position: absolute;
+  height: 38px;
+  width: auto; 
+  left: 0;
+  top: 6px;
+}
+.black {
+	font-weight: bold;
+	color: #151516;
+}
+.gray {
+  color: #a4a4a4;
+}
+.navbar-brand .black {
+  display: inline;
+  font-weight: bold;
+  margin-right: 8px;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: #151516;
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background: #151516;
+}
+.navbar-collapse {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+/* shorten brand on very small devices */
+@media (max-width: 380px) {
+  .navbar-brand .black {
+    display: none;
+  }
+}
+@media (max-width: 290px) {
+  .navbar-brand .app-name {
+    display: none;
+  }
+}
+
+/* jumbotron area */
+.jumbotron {
+  padding-top: 0;
+  padding-bottom: 0;
+  background: #4c4b4b;
+  background-image: url('../img/top_bg.jpg');
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #eee;
+}
+.jumbotron .container {
+  padding: 38px;
+  background-image: url('../img/sumatra_top.jpg');
+  background-repeat: no-repeat;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.jumbotron p {
+  font-size: 16px;
+}
+
+/* taxa section */
+.breadcrumb {
+  margin-top: 22px;
+}
+.breadcrumb > .active > a {
+  color: #777;
+  text-decoration: none;
+  cursor: default;
+}
+.alphabet {
+  display: block;
+  padding: 0;
+  margin: 0;
+  padding-bottom: 34px;
+  list-style: none;
+}
+.alphabet>li {
+  margin-right: 16px;
+  display: inline;
+}
+.col-xs-4-cl {
+  -webkit-column-width: 22em;
+  -moz-column-width: 22em;
+  column-width: 22em;
+  -webkit-column-gap: 5em;
+  -moz-column-gap: 5em;
+  column-gap: 5em;
+}
+.alphablock h1 {
+  margin-top: 0;
+}
+td a {
+  display: block;
+}
+td em::after {
+  content: '\0000a0\0000a0';
+}
+.fixed {
+  left: 50%;
+  position: fixed;
+}
+.img-prev {
+  opacity: 0;
+}
+.img-prev img {
+  width: 75%;
+  max-width: 540px;
+  height: auto;
+  margin-top: 15px;
+  margin-left: 15px;
+    -webkit-border-radius: 7px;
+     -moz-border-radius: 7px;
+          border-radius: 7px;
+}
+.itm .fa.fa-lg {
+  margin-right: 8px;
+}
+h2 {
+  margin-bottom: 22px;
+}
+h2 i {
+  margin-right: 14px;
+  font-size: 0.7em;
+}
+.col-md-4 {
+  line-height: 1.7em;
+  margin-bottom: 45px;
+}
+
+/* search form */
+#searchform {
+  display: block;
+  position: relative;
+  max-width: 600px;
+  margin: 22px auto;
+  font-size: 1.4em;
+}
+.questions {
+  width: 100%;
+  padding: 15px 52px 15px 15px;
+  border: none;
+  background: #efefef;
+  border-bottom: 3px solid #a24545;
+  outline: none;
+}
+#qsubm {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  margin: 0;
+  font-family: FontAwesome;
+  border: none;
+  outline: none;
+  background: transparent !important;
+  opacity: 0.3;
+  cursor: pointer;
+}
+#qsubm:hover {
+  color: #a24545;
+  opacity: 1;
+}
+
+/* section content col images */
+.col-md-4 img {
+  margin: 10px 0 16px;
+  -webkit-border-radius: 7px;
+     -moz-border-radius: 7px;
+          border-radius: 7px;
+}
+
+/* rounded buttons */
+.btn {
+  padding: 12px 20px;
+  -webkit-border-radius: 30px;
+     -moz-border-radius: 30px;
+          border-radius: 30px;
+  }
+.btn-lg {
+  padding: 18px 27px;
+  background-color: #862f2f;
+  color: white;
+}
+.btn-lg:hover {
+  background-color: #a24545;
+  color: white;
+}
+.btn-lg:active {
+  background-color: #693131;
+}
+
+.sp-table, .home-content {
+  margin-bottom: 250px;
+}
+
+.search-results > div {
+  text-align: center;
+}
+.search-results .table > tbody > tr > td {
+  cursor: pointer;
+}
+.search-results h3 {
+  font-size: 18px;
+  margin-top: 0;
+}
+.search-results h3 span {
+  white-space: nowrap;
+}
+.search-results .thumb, .search-results .thumb img {
+  width: 100px;
+}
+
+
+/* image chooser */
+#img-chooser {
+  position: fixed;
+  left: 0;
+  bottom: -150px;
+  width: 100%;
+  height: 238px;
+  background: #000;
+  background-color: rgba(0, 0, 0, 0.75);
+  opacity: 0.7;
+  overflow: hidden;
+}
+#img-chooser:hover {
+  bottom: 0px;
+  opacity: 1;
+}
+#img-chooser.pinned {
+  position: absolute;
+  background: #242221;
+  bottom: 100px;
+  opacity: 1;
+}
+#img-chooser > ul {
+  display: block;
+  list-style: none;
+  margin: 0 auto;
+  padding: 38px;
+  white-space: nowrap;
+}
+#img-chooser > ul > li {
+  display: inline-block;
+  list-style: none;
+  margin-right: 32px;
+}
+#img-chooser > ul > li > a {
+  display: block;
+  opacity: 0.75;
+  border: none;
+  text-decoration: none;
+}
+#img-chooser > ul > li > a:hover {
+  opacity: 1;
+}
+#img-chooser img {
+  height: 150px;
+  width: 150px;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+#img-chooser.logos > ul > li {
+  background: white;
+  -webkit-filter: grayscale(98%);
+  -moz-filter: grayscale(98%);
+  filter: grayscale(98%);
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+     -moz-transition: all 0.2s ease-in-out;
+       -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+#img-chooser.logos > ul > li:hover {
+  -webkit-filter: grayscale(0);
+  -moz-filter: grayscale(0);
+  filter: grayscale(0);
+}
+#img-chooser.logos img {
+  height: 126px;
+  width: auto;
+  margin: 12px;
+}
+
+}
+
+/* utils */
+.animate-02 {
+  -webkit-transition: all 0.2s ease-in-out;
+     -moz-transition: all 0.2s ease-in-out;
+       -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+
+/* for lg screens */
+@media (min-width: 768px) {
+  body {
+    padding-top: 80px;
+  }
+  .col-md-4 {
+    padding-left: 23px;
+    padding-right: 23px;
+  }
+  .navbar-nav>li>a {
+    padding: 22px;
+  }
+  .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .navbar-brand {
+    padding-left: 67px;
+  }
+  .navbar-brand img {
+    height: 58px;
+    top: 10px;
+  }
+  .jumbotron .container {
+    padding: 87px;
+  }
+  .jumbotron p {
+    font-size: 21px;
+  }
+  .breadcrumb {
+    margin: 42px 0;
+  }
+  .img-prev {
+    opacity: 1;
+  }
+  #searchform {
+    margin: 52px auto;
+  }
+  .search-results .table>tbody>tr>td {
+    padding: 24px 20px;
+  }
+  .search-results h3 {
+    font-size: 24px;
+  }
+}
+
+/* footer */
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 12px;
+  display: block;
+  height: 100px;
+  background: #393837;
+  color: #aaa;
+}
+footer p {
+  margin: 39px 0;
 }

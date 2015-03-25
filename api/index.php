@@ -41,7 +41,7 @@ $app = new Slim\Slim(array(
 ));
 
 // set response content-type to JSON for all requests
-$app->contentType('application/json; charset=UTF-8');
+$app->contentType('application/json; charset=utf-8');
 
 // instantiate router (loads routes defined in config/routes.php)
 new Router();

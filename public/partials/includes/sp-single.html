@@ -1,0 +1,18 @@
+<div ng-controller="SpSingleCtrl">
+	<h2><em id="species">{{sp}}</em>&nbsp;&nbsp;<span id="author">{{dataObj.result.author}}</span></h2>
+	<h3 id="family" class="gray">{{family}}</h3>
+	<table class="table table-striped sp-table">
+		<tr ng-repeat="(key, data) in dataObj.result" ng-if="['family', 'species', 'author'].indexOf(key) === -1">
+			<th>{{key}}</th><td id="{{key}}">{{data}}</td>
+		</tr>
+	</table>
+	<div ng-dragdealer id="img-chooser" class="pinned" resize>
+		<ul class="handle" ng-style="{width: (imgList.count * 182) + 42}">
+			<li ng-repeat="img in imgList.result">
+				<a href="{{baseUrl}}images/{{sp}}/{{img}}">
+					<img ng-src="{{baseUrl}}img/taxa/{{spDir}}/{{img}}" />
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

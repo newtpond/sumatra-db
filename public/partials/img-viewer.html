@@ -1,0 +1,15 @@
+<div ng-img-viewer ng-right-click  id="img-map"></div>
+<div id="img-viewer-top" class="animate-02">
+	<a class="goback animate-02 primary-light-bg" href="{{baseUrl}}taxa/{{family}}/{{sp}}">
+		<i class="fa fa-arrow-left fa-lg"></i><span class="black animate-02">Sumatra</span> :: <em>{{sp}}</em>
+	</a>
+</div>
+<div ng-dragdealer id="img-chooser" class="animate-02" resize>
+	<ul class="handle" ng-style="{width: (imgList.count * 182) + 82}">
+		<li ng-repeat="img in imgList.result">
+			<a href="{{baseUrl}}images/{{sp}}/{{img}}">
+				<img ng-src="{{baseUrl}}img/taxa/{{spDir}}/{{img}}" />
+			</a>
+		</li>
+	</ul>
+</div>

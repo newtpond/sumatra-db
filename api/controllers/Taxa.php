@@ -17,7 +17,7 @@ class Taxa extends Controller
 
         $this->render('classes/index', array(
             'message' => 'List of all accessible families.',
-            'count' => $model->rowsCount('classes'),
+            'count' => $model->countFamilies(),
             'result' => $result
         ));
     }
@@ -37,8 +37,8 @@ class Taxa extends Controller
 
         $this->render('classes/index', array(
             'message' => "List of species in family \"{$name}\".",
-            'count' => $model->rowsCount($name),
-            'result' => $result
+            'count' => $result['count'],
+            'result' => $result['data']
         ));
     }
 

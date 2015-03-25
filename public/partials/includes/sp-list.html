@@ -1,0 +1,28 @@
+<div ng-controller="SpListCtrl">
+	<ul class="alphabet">
+	  <li ng-repeat="letter in dataList.result">
+	  	<a scroll-to="{{letter.key}}" href="">{{letter.key}}</a>
+	  </li>
+	</ul>
+	<row>
+		<div class="col-sm-6">
+			<div class="alphablock" ng-repeat="abcList in dataList.result">
+				<h1 id="{{abcList.key}}">{{abcList.key}}</h1>
+				<table class="table">
+					<tr ng-repeat="spItem in abcList.data">
+						<td>
+							<a href="{{baseUrl}}taxa/{{family}}/{{spItem.species}}" ng-mouseover="hoverIn(spItem)" ng-mouseleave="hoverOut()">
+								<em>{{spItem.species}}</em> {{spItem.author}}
+							</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="col-sm-6 fixed">
+	    <div class="img-prev">
+	      <img src="{{baseUrl}}img/{{preview}}" >
+	    </div>
+	  </div>
+  </row>
+</div>

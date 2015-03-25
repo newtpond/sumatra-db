@@ -1,0 +1,32 @@
+<div id="hm" class="container">
+  <form id="searchform" action="" method="GET">
+    <input class="questions" id="search" name="s" type="text" placeholder="search" ng-model="routeParams['s']" ng-minlength="3">
+    <input type="submit" id="qsubm" class="search" value="&#xf002;" />
+  </form>
+	<div class="search-results">
+		<div ng-hide="searchModel.length" class="empty">
+			<p class="gray">You need to type at least 3 characters.</p>
+		</div>
+		<div ng-show="searchModel.length && !filtered.length && loadingResults" class="empty">
+			<p class="gray">Loading results for: {{routeParams['s']}}</p>
+			<p><img ng-src="{{baseUrl}}img/loader.gif"></p>
+		</div>
+		<div ng-show="searchModel.length && !filtered.length && !loadingResults" class="empty">
+			<p class="gray">No search results for: {{routeParams['s']}}</p>
+		</div>
+		<div ng-show="searchModel.length && filtered.length" class="num-results">
+			<p class="gray">Number of results: {{filtered.length}}</p>
+		</div>
+		<table ng-show="searchModel.length" class="table table-striped sp-table">
+			<tr ng-repeat="spItem in filtered = (dataList.result | filter : searchModel)" ng-click="go('/taxa/' + spItem.family + '/' + spItem.species)" ng-search-results>
+				<td class="thumb">
+				  <img ng-src="{{baseUrl}}img/{{spItem.preview}}" />
+				</td>
+				<td>
+					<h3><em>{{spItem.species}}</em> <span>{{spItem.author}} &nbsp;&nbsp;</span> <span class="gray">{{spItem.family}}</span></h3>
+					<em>island</em>=&nbsp;"{{spItem.island}}"; &nbsp;&nbsp; <em>area</em>=&nbsp;"{{spItem.area}}"; &nbsp;&nbsp; <em>origin</em>=&nbsp;"{{spItem.origin}}"; &nbsp;&nbsp; <em>plot</em>=&nbsp;"{{spItem.plot}}"; &nbsp;&nbsp; <em>habitus</em>=&nbsp;"{{spItem.habitus}}"; &nbsp;&nbsp; <em>lifeform</em>=&nbsp;"{{spItem.lifeform}}"; &nbsp;&nbsp; <em>origin</em>=&nbsp;"{{spItem.origin}}"; &nbsp;&nbsp; <em>collected</em>=&nbsp;"{{spItem.collected}}"; &nbsp;&nbsp; <em>photo</em>=&nbsp;"{{spItem.photo}}"; &nbsp;&nbsp; <em>fruit</em>=&nbsp;"{{spItem.fruit}}"; &nbsp;&nbsp; <em>comments</em>=&nbsp;"{{spItem.comments}}";
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
