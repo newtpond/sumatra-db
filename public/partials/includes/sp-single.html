@@ -2,7 +2,7 @@
 	<h2><em id="species">{{sp}}</em>&nbsp;&nbsp;<span id="author">{{dataObj.result.author}}</span></h2>
 	<h3 id="family" class="gray">{{family}}</h3>
 	<table class="table table-striped sp-table">
-		<tr ng-repeat="(key, data) in dataObj.result" ng-if="['family', 'species', 'author'].indexOf(key) === -1">
+		<tr ng-repeat="(key, data) in dataObj.result" ng-if="['family', 'species', 'author', 'plot', 'collected', 'acceptance', 'island', 'photo'].indexOf(key) === -1">
 			<th>{{key}}</th><td id="{{key}}">{{data}}</td>
 		</tr>
 	</table>
